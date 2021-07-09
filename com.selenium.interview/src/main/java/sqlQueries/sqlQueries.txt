@@ -1,0 +1,20 @@
+//Getting the second highest salary
+SELECT name, MAX(salary) AS salary
+  FROM employee
+ WHERE salary < (SELECT MAX(salary)
+                 FROM employee); 
+                 
+ 		---OR ----
+select * from ( select e.*, row_number() over (order by salary desc) as row_num 
+from Employee e ) where row_num = 2;
+
+	----OR --- 
+	select * from ( select e.*, rank() over (order by salary desc) as rank
+	 from Employee e ) where rank = 2;
+
+//Use of distinct : It provides the output which do not have any duplicate entry
+
+SELECT DISTINCT SALARY FROM CUSTOMERS
+   ORDER BY SALARY;
+   
+   //GroupBy - 
